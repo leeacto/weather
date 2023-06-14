@@ -7,6 +7,8 @@ class WeatherForecast
   class << self
     def forecast(lat, lon)
       urls = weather_urls(lat, lon)
+      return nil unless urls
+
       forecast_data = forecast_by_url(urls[:forecast])
       current_data = current_by_url(urls[:hourly])
       {
@@ -18,6 +20,9 @@ class WeatherForecast
     def current_by_url(url)
       response = self.get(url)
       body = JSON.parse(response.body)
+
+      return nil unless response.ok?
+
       body.dig("properties", "periods").first
     end
 
@@ -30,6 +35,8 @@ class WeatherForecast
     def weather_urls(lat, lon)
       response = self.get("/points/#{lat},#{lon}")
       body = JSON.parse(response.body)
+
+      return nil unless response.ok?
 
       {
         forecast: body.dig("properties", "forecast"),
