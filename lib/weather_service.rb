@@ -1,4 +1,5 @@
 require 'geocoder'
+require 'weather_cache'
 require 'weather_forecast'
 
 class WeatherService
@@ -8,10 +9,19 @@ class WeatherService
       geocoded = Geocoder.locate(address)
       return nil unless geocoded
 
-      weather_data = WeatherForecast.forecast(geocoded[:lat], geocoded[:lon])
-      return geocoded unless weather_data
+      zip = geocoded[:zip]
+      cached = WeatherCache.get_by_zip(zip)
+      return cached if cached
 
-      weather_data.merge(geocoded)
+      return_data = geocoded
+
+      weather_data = WeatherForecast.forecast(geocoded[:lat], geocoded[:lon])
+      return return_data unless weather_data
+
+      return_data.merge!(weather_data, updated_at: Time.now)
+      WeatherCache.set_by_zip(zip, return_data)
+
+      return_data
     end
   end
 end
