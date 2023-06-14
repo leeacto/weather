@@ -1,1 +1,9 @@
-HI
+<%= form_with url: "/api/forecast", method: :get, id: "address-form" do |form| %>
+  <%= form.label :address, "Address:" %>
+  <%= form.text_field :address %>
+  <%= form.submit "Get Forecast" %>
+<% end %>
+
+<div>Location&nbsp;<span id="location"></span></div>
+<div>Updated At&nbsp;<span id="updated-at"></span></div>
+<div>Curent Temperature&nbsp;<span id="current-temp"></span></div>
