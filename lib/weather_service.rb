@@ -6,6 +6,12 @@ class WeatherService
   # Retrieve weather forecast data given a US address
   class << self
     def forecast(address)
+      # Get zip & lat/long from address
+      # Check cache for saved zip
+      # Get weather data by lat/long
+      # Cache data
+      # Return data
+
       geocoded = Geocoder.locate(address)
       return nil unless geocoded
 
