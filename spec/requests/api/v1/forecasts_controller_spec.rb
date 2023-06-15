@@ -1,10 +1,10 @@
 require "rails_helper"
 
-RSpec.describe Api::ForecastsController do
+RSpec.describe Api::V1::ForecastsController do
   describe "GET show" do
     it "requires an address parameter" do
       expect {
-        get api_forecast_path
+        get api_v1_forecast_path
       }.to raise_error(ActionController::ParameterMissing)
     end
 
@@ -14,7 +14,7 @@ RSpec.describe Api::ForecastsController do
         address: "123 FAKE ST SPRINGFIELD MO 12345"
       }
       expect(WeatherService).to receive(:forecast).with(address).and_return(data)
-      get api_forecast_path, params: { address: }
+      get api_v1_forecast_path, params: { address: }
 
       json_body = JSON.parse(response.body)
 

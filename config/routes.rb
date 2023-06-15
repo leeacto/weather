@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   namespace :api do
-    get 'forecast', to: 'forecasts#show'
+    namespace :v1 do
+      get 'forecast', to: 'forecasts#show'
+    end
   end
 end

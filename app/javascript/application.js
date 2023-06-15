@@ -5,6 +5,8 @@ import "jquery"
 import "jquery_ujs"
 import "popper"
 
+const API_VERSION = 1;
+
 $(document).ready(function() {
   const $searchForm = $("#address-form");
   let forecastPeriod = function(data) {
@@ -19,7 +21,7 @@ $(document).ready(function() {
     e.preventDefault();
 
     const address = $("#address").val();
-    $.get("/api/forecast", { address: address }).done(function(data) {
+    $.get("/api/v" + API_VERSION + "/forecast", { address: address }).done(function(data) {
       if (data) {
         $("#forecast-holder").empty();
         $("#address").val('');
