@@ -1,2 +1,14 @@
+#address-form {
+  margin: 5px;
+}
+
+#current-data {
+  margin: 5px;
+}
+
 .forecast-pd {
+  display: inline-block;
+  margin: 5px;
+  border: 2px solid black;
+  text-align: center;
 }

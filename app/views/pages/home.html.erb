@@ -1,16 +1,38 @@
-<div class="container-fluid">
+<div>
+  <h1 class="title">US Weather Forecast</h1>
+
   <%= form_with url: "/api/forecast", method: :get, id: "address-form" do |form| %>
     <%= form.label :address, "Address:" %>
     <%= form.text_field :address %>
     <%= form.submit "Get Forecast" %>
   <% end %>
 
-  <div>Location&nbsp;<span id="location"></span></div>
-  <div>Updated At&nbsp;<span id="updated-at"></span></div>
-  <div>Current Temperature&nbsp;<span id="current-temp"></span></div>
-  <div>Short Term Forecast&nbsp;<span id="short-forecast"></span></div>
-  <div>Chance of Rain&nbsp;<span id="rain-chance"></span></div>
-  <div>Wind&nbsp;<span id="wind"></span></div>
+  <table id="current-data">
+    <tr>
+      <td>Location</td>
+      <td><span id="location"></span></td>
+    </tr>
+    <tr>
+      <td>Updated At</td>
+      <td><span id="updated-at"></span></td>
+    </tr>
+    <tr>
+      <td>Current Temperature</td>
+      <td><span id="current-temp"></span></td>
+    </tr>
+    <tr>
+      <td>Short Term Forecast</td>
+      <td><span id="short-forecast"></span></td>
+    </tr>
+    <tr>
+      <td>Chance of Rain</td>
+      <td><span id="rain-chance"></span></td>
+    </tr>
+    <tr>
+      <td>Wind</td>
+      <td><span id="wind"></span></td>
+    </tr>
+  </table>
 
   <div class="row" id="forecast-holder"></div>
 </div>
